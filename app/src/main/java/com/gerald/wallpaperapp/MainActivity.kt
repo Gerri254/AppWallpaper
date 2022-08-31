@@ -1,6 +1,7 @@
 package com.gerald.wallpaperapp
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gerald.wallpaperapp.databinding.ActivityMainBinding
@@ -15,6 +16,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val btnSearch = findViewById<Button>(R.id.button)
+        btnSearch.setOnClickListener {
+
+        }
 
         wallpapers.add(
             Wallpaper(
