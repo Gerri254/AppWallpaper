@@ -1,5 +1,6 @@
 package com.gerald.wallpaperapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -17,9 +18,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val btnSearch = findViewById<Button>(R.id.button)
+        val btnSearch = findViewById<Button>(R.id.buttonAngalia)
         btnSearch.setOnClickListener {
-
+        val intent = Intent(this,StoredActivity::class.java)
+            startActivity(intent)
         }
 
         wallpapers.add(

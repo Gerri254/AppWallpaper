@@ -12,41 +12,54 @@ import java.io.File
 
 class StoredActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityStoredBinding
+   lateinit var binding : ActivityStoredBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityStoredBinding.inflate(LayoutInflater)
+        binding = ActivityStoredBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.getImage.setOnClickListener {
 
             val progressDialog = ProgressDialog(this)
-            progressDialog.setMessage("Fetching Image")
+            progressDialog.setMessage("Fetching Image.....")
             progressDialog.setCancelable(false)
             progressDialog.show()
-            val imageName = binding.imageId.text.toString()
-            val storageRef = FirebaseStorage.getInstance().reference.child("images/$imageName.jpg")
+
+
+          val imageName = binding.imageId.text.toString()
+          val storageRef = FirebaseStorage.getInstance().reference.child("images/$imageName.jpg")
 
             val localFile = File.createTempFile("tempImage","jpg")
             storageRef.getFile(localFile).addOnSuccessListener {
 
-                if (progressDialog.isShowing)
+                if(progressDialog.isShowing)
                     progressDialog.dismiss()
 
                 val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
                 binding.wallpaperView.setImageBitmap(bitmap)
 
+
             }.addOnFailureListener{
 
-                if (progressDialog.isShowing)
+                if(progressDialog.isShowing)
                     progressDialog.dismiss()
 
-                Toast.makeText(this,"Failed to retrieve Image",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Failed to retrieve the image",Toast.LENGTH_SHORT).show()
 
             }
+
+
+
         }
 
-    }
-}
+
+
+        }
+
+        }
+
+
+
+
